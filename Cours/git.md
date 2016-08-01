@@ -30,11 +30,35 @@ Une fois l'installation effectuée, vérifier l'installation avec :
 Commandes de base
 -----------------
 
+### Configurer git
+
+    git config --global user.name "Romain Bohdanowicz"
+    git config --global user.email "romain.bohdanowicz@gmail.com"
+
 ### Créer le repository
 
 Demande à git de surveiller un projet.
 
     git init
 
+### Ajouter une modification à la staging area
 
-    
+    git add CHEMIN_VERS_LE_FICHIER
+    git add README.md
+    git add Cours/git.md
+    git add *.html
+    git add *.{js,html,css}
+		
+### Créer une sauvegarde (de ce qui se trouve dans la staging area)
+
+    git commit -m "Message de commit"
+
+### Publier sur un autre repository (exemple Github)
+
+    git remote add origin http://URL_VERS_LE_REPOSITORY_DISTANT
+    git push -u origin master
+		
+Les fois suivantes :
+
+    git push
+
