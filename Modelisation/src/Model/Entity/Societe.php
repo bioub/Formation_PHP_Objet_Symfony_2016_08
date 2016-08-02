@@ -9,6 +9,11 @@ class Societe
     protected $adresse;
 
     /**
+     * @var Contact[]
+     */
+    protected $contacts = [];
+
+    /**
      * @return mixed
      */
     public function getNom()
@@ -44,5 +49,18 @@ class Societe
         return $this;
     }
 
+    /**
+     * @return Contact[]
+     */
+    public function getContacts()
+    {
+        return $this->contacts;
+    }
+
+    public function addContact(Contact $contact)
+    {
+        $this->contacts[] = $contact;
+        return $this;
+    }
 
 }

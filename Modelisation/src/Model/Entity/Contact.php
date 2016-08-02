@@ -8,6 +8,11 @@ class Contact
     protected $nom;
 
     /**
+     * @var Groupe[]
+     */
+    protected $groupes = [];
+
+    /**
      * @var Societe
      */
     protected $societe; // reference vers un objet de type Societe
@@ -46,12 +51,25 @@ class Contact
      * @param Societe $societe
      * @return Contact
      */
-    public function setSociete($societe)
+    public function setSociete(Societe $societe)
     {
         $this->societe = $societe;
         return $this;
     }
 
+    /**
+     * @return Groupe[]
+     */
+    public function getGroupes()
+    {
+        return $this->groupes;
+    }
 
+
+    public function addGroupe(Groupe $groupe)
+    {
+        $this->groupes[] = $groupe;
+        return $this;
+    }
 
 }
