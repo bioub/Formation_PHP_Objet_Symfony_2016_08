@@ -1,0 +1,15 @@
+{
+    "name": "romain/modelisation",
+    "authors": [
+        {
+            "name": "Romain Bohdanowicz",
+            "email": "romain.bohdanowicz@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Prepavenir\\": "src/"
+        }
+    }
+}
