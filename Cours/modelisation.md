@@ -4,7 +4,7 @@ Modélisation
 PHP Objet
 ---------
 
-La programmation orienté s'inspire de la vie réelle. Les objets sont la représentation en mémoire d'un certains type d'objet (les classes). Exemple : un écran d'ordinateur est de type Ecran et il peut exister plusieurs objets Ecran.
+La programmation orienté objet s'inspire de la vie réelle. Les objets sont la représentation en mémoire d'un certains type d'objet (les classes). Exemple : un écran d'ordinateur est de type Ecran et il peut exister plusieurs objets Ecran.
 
 La classe permet la création/construction de l'objet. C'est aussi sa famille/forme.
 
@@ -21,11 +21,11 @@ Le namespace racine s'appelle vendor et doit être unique, par exemple le nom d'
 
 Exemple de classe :
 
+```php
 <?php
 
 namespace Prepavenir\Model\Entity;
 
-```php
 class Contact
 {
     protected $prenom;
@@ -47,10 +47,10 @@ Par convention les noms des classes et des namespaces commence par des majuscule
 
 Le nom complet d'une classe avec ses préfixes : Fully Qualified Class Name (FQCN ou FQN).
 
-Par convention aussi l'arborescence des sources correspond aux namespaces, ex:
+Par convention (PSR-4) aussi l'arborescence des sources correspond aux namespaces, ex:
 
-* la classe Utility\Array -> src/Utility/Array.php
-* la classe Prepavenir\Model\Entity\Contact.php -> src\Entity\Contact.php
+* la classe `Utility\Array` -> `src/Utility/Array.php`
+* la classe `Prepavenir\Model\Entity\Contact` -> `src\Entity\Contact.php`
 
 Visibilité :
 
@@ -64,3 +64,11 @@ Principe d'encapsulation : les propriétés ne jamais publiques. Moins on en sai
 
 Getters/Setters (Accesseurs), méthodes pour accéders aux propriétés, on peut limiter l'accès en ne créant pas le setter, et on peut masquer de la validation dans un setter.
 
+### Référence
+
+Les objets sont stockés en 2 parties :
+
+* La variable contient la référence, c'est à dire où se trouve l'objet, affecter une variable signifie se donner un autre moyen d'accéder au même objet
+* Les opérateurs new ou clone créent des nouveaux objets
+
+![image](img/reference.jpg)
