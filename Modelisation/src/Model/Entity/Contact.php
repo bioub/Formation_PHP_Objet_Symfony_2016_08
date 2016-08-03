@@ -4,38 +4,102 @@ namespace Prepavenir\Model\Entity;
 
 class Contact
 {
+    protected $id;
     protected $prenom;
     protected $nom;
+    protected $email;
+    protected $telephone;
+
+    /** @var Societe */
+    protected $societe;
 
     /**
-     * @var Groupe[]
+     * @return mixed
      */
-    protected $groupes = [];
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
-     * @var Societe
+     * @param mixed $id
+     * @return Contact
      */
-    protected $societe; // reference vers un objet de type Societe
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
 
+    /**
+     * @return mixed
+     */
     public function getPrenom()
     {
         return $this->prenom;
     }
 
+    /**
+     * @param mixed $prenom
+     * @return Contact
+     */
     public function setPrenom($prenom)
     {
         $this->prenom = $prenom;
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getNom()
     {
         return $this->nom;
     }
 
+    /**
+     * @param mixed $nom
+     * @return Contact
+     */
     public function setNom($nom)
     {
         $this->nom = $nom;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     * @return Contact
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * @param mixed $telephone
+     * @return Contact
+     */
+    public function setTelephone($telephone)
+    {
+        $this->telephone = $telephone;
         return $this;
     }
 
@@ -51,25 +115,9 @@ class Contact
      * @param Societe $societe
      * @return Contact
      */
-    public function setSociete(Societe $societe)
+    public function setSociete($societe)
     {
         $this->societe = $societe;
         return $this;
     }
-
-    /**
-     * @return Groupe[]
-     */
-    public function getGroupes()
-    {
-        return $this->groupes;
-    }
-
-
-    public function addGroupe(Groupe $groupe)
-    {
-        $this->groupes[] = $groupe;
-        return $this;
-    }
-
 }

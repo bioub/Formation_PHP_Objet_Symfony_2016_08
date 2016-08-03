@@ -16,3 +16,15 @@ $contact2 = $contact1;
 $contact2->setPrenom('Eric');
 
 echo $contact1->getPrenom() . "\n"; // Eric
+
+
+$prenoms = ['Romain', 'Eric', 'Jean'];
+
+function trier(&$tableau) {
+    // $tableau = &$prenoms;
+    sort($tableau);
+}
+
+trier($prenoms); // $tableau = &$prenoms;
+
+var_dump($prenoms);
