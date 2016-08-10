@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des articles{% endblock %}
+
+{% block body %}
+    <h2>Liste des articles</h2>
+    <table>
+        <tr>
+            <th>Titre</th>
+            <th>Auteur</th>
+            <th>Actions</th>
+        </tr>
+        {% for article in articles %}
+        <tr>
+            <td>{{ article.titre }}</td>
+            <td>
+                {% if article.auteur %}
+                    {{ article.auteur.pseudo }}
+                {% else %}
+                    Pas d'auteur
+                {% endif %}
+            </td>
+            <td>
+                <a href="#">Afficher</a>
+                <a href="#">Modifier</a>
+                <a href="#">Supprimer</a>
+            </td>
+        </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Pas d'articles</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
