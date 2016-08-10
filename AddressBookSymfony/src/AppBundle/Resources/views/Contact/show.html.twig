@@ -1,0 +1,48 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ contact.prenom }} {{ contact.nom }}{% endblock %}
+
+{% block body %}
+    <h2>Afficher un contact</h2>
+
+    <div class="row">
+        <div class="col-sm-2">
+            <b>Prénom</b>
+        </div>
+        <div class="col-sm-10">
+            {{ contact.prenom }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2">
+            <b>Nom</b>
+        </div>
+        <div class="col-sm-10">
+            {{ contact.nom }}
+        </div>
+    </div>
+
+    {% if contact.email %}
+    <div class="row">
+        <div class="col-sm-2">
+            <b>Email</b>
+        </div>
+        <div class="col-sm-10">
+            {{ contact.email }}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if contact.telephone %}
+    <div class="row">
+        <div class="col-sm-2">
+            <b>Téléphone</b>
+        </div>
+        <div class="col-sm-10">
+            {{ contact.telephone }}
+        </div>
+    </div>
+    {% endif %}
+
+{% endblock %}
