@@ -1,0 +1,13 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ societe.nom }}{% endblock %}
+
+{% block body %}
+<h2>Afficher une société</h2>
+<p>Nom : {{ societe.nom }}</p>
+<p>Ville : {{ societe.ville }}</p>
+
+<p>
+    <a href="{{ path('app_societe_list') }}">Retour à liste</a>
+</p>
+{% endblock %}

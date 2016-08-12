@@ -1,0 +1,20 @@
+AppBundle\Entity\Contact:
+    contact{1..50}:
+        prenom: '<firstName()>'
+        nom: '<lastName()>'
+        email: '50%? <email()>'
+        telephone: '50%? <phoneNumber()>'
+
+AppBundle\Entity\Societe:
+    societe{1..10}:
+        nom: '<company()>'
+        ville: '<city()>'
+
+
+#Nelmio\Entity\Group:
+#    group1:
+#        name: Admins
+#        owner: '@user1'
+#        members: '<numberBetween(1, 10)>x @user*'
+#        created: '<dateTimeBetween("-200 days", "now")>'
+#        updated: '<dateTimeBetween($created, "now")>'
