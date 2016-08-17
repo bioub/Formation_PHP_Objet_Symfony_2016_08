@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Groupe {{ groupe.nom }}{% endblock %}
+
+{% block body %}
+    <h2>Groupe {{ groupe.nom }}</h2>
+    <ul>
+        {% for contact in groupe.contacts %}
+        <li>{{ contact.nom }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

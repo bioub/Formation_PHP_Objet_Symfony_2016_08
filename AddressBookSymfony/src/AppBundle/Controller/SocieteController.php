@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Societe;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -32,10 +33,10 @@ class SocieteController extends Controller
     /**
      * @Route("/{id}")
      */
-    public function showAction($id)
+    public function showAction(Societe $societe)
     {
         return $this->render('AppBundle:Societe:show.html.twig', array(
-            'societe' => $this->getRepository()->find($id)
+            'societe' => $societe
         ));
     }
 

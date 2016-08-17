@@ -1,7 +1,31 @@
 {% extends "::base.html.twig" %}
+{% form_theme contactForm 'bootstrap_3_layout.html.twig' %}
 
-{% block title %}AppBundle:Contact:add{% endblock %}
+{% block title %}Ajouter un contact{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Contact:add page</h1>
+    <h2>Ajouter un contact</h2>
+    {{ form_start(contactForm, {attr: {novalidate: 'novalidate'} }) }}
+        {{ form_row(contactForm.prenom) }}
+        {{ form_row(contactForm.nom) }}
+        {{ form_row(contactForm.email) }}
+        {{ form_row(contactForm.telephone) }}
+        {{ form_row(contactForm.societe) }}
+        {{ form_row(contactForm.groupes) }}
+        <div>
+            <button type="submit" class="btn btn-default">Ajouter</button>
+        </div>
+
+    {{ form_end(contactForm) }}
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/select2.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/select2.js') }}"></script>
+    <script>
+        $('#contact_groupes').select2();
+    </script>
 {% endblock %}

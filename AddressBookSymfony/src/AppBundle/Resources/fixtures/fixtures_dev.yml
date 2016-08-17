@@ -4,12 +4,24 @@ AppBundle\Entity\Contact:
         nom: '<lastName()>'
         email: '50%? <email()>'
         telephone: '50%? <phoneNumber()>'
+        societe: '50%? @societe*'
+        groupes: '<numberBetween(0,3)>x @groupe*'
 
 AppBundle\Entity\Societe:
     societe{1..10}:
         nom: '<company()>'
         ville: '<city()>'
 
+AppBundle\Entity\Groupe:
+    groupe1:
+        nom: 'Amis'
+        description: 'Mes amis'
+    groupe2:
+        nom: 'Famille'
+        description: 'Les personnes de ma famille'
+    groupe3:
+        nom: 'Travail'
+        description: 'Contacts Pro'
 
 #Nelmio\Entity\Group:
 #    group1:

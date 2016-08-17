@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Contact
@@ -25,6 +26,8 @@ class Contact
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=40)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=40)
      */
     private $prenom;
 
@@ -32,6 +35,8 @@ class Contact
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=40)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=40)
      */
     private $nom;
 
@@ -39,6 +44,9 @@ class Contact
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=80, nullable=true, unique=true)
+     * @Assert\Email(strict=true)
+     * @Assert\Length(max=80)
+     *
      */
     private $email;
 
@@ -48,6 +56,35 @@ class Contact
      * @ORM\Column(name="telephone", type="string", length=20, nullable=true)
      */
     private $telephone;
+
+    /**
+     * @var Societe
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Societe")
+     */
+    protected $societe;
+
+    /** @ORM\ManyToMany(targetEntity="AppBundle\Entity\Groupe", inversedBy="contacts") */
+    protected $groupes;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->groupes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * @param int $id
+     * @return Contact
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
 
 
     /**
@@ -155,5 +192,68 @@ class Contact
     {
         return $this->telephone;
     }
-}
 
+    /**
+     * Set societe
+     *
+     * @param \AppBundle\Entity\Societe $societe
+     *
+     * @return Contact
+     */
+    public function setSociete(\AppBundle\Entity\Societe $societe = null)
+    {
+        $this->societe = $societe;
+
+        return $this;
+    }
+
+    /**
+     * Get societe
+     *
+     * @return \AppBundle\Entity\Societe
+     */
+    public function getSociete()
+    {
+        return $this->societe;
+    }
+
+
+    /**
+     * Add groupe
+     *
+     * @param \AppBundle\Entity\Groupe $groupe
+     *
+     * @return Contact
+     */
+    public function addGroupe(\AppBundle\Entity\Groupe $groupe)
+    {
+        $this->groupes[] = $groupe;
+
+        return $this;
+    }
+
+    /**
+     * Remove groupe
+     *
+     * @param \AppBundle\Entity\Groupe $groupe
+     */
+    public function removeGroupe(\AppBundle\Entity\Groupe $groupe)
+    {
+        $this->groupes->removeElement($groupe);
+    }
+
+    /**
+     * Get groupes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGroupes()
+    {
+        return $this->groupes;
+    }
+
+    public function __toString()
+    {
+        return $this->nom;
+    }
+}

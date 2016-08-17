@@ -3,6 +3,7 @@
 namespace Prepavenir\AliceBundle\Command;
 
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Logging\EchoSQLLogger;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\SchemaTool;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -36,6 +37,9 @@ class AliceLoadCommand extends ContainerAwareCommand
         }
 
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
+
+        $logger = new EchoSQLLogger();
+        $em->getConfiguration()->setSQLLogger($logger);
 
         if ($input->getOption('drop')) {
             $tool = new SchemaTool($em);

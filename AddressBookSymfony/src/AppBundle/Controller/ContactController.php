@@ -2,8 +2,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @Route("/contact")
@@ -27,12 +30,28 @@ class ContactController extends Controller
     /**
      * @Route("/ajouter")
      */
-    public function addAction()
+    public function addAction(Request $request)
     {
+        $form = $this->createForm(ContactType::class);
 
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $contact = $form->getData();
+
+            $em = $this->get('doctrine.orm.entity_manager');
+            $em->persist($contact);
+            $em->flush();
+
+            //$this->redirectToRoute('app_contact_show', ['id' => $contact->getId()]);
+
+            $this->addFlash('success', 'Le contact a bien été inséré');
+
+            return $this->redirectToRoute('app_contact_list');
+        }
 
         return $this->render('AppBundle:Contact:add.html.twig', array(
-            // ...
+            'contactForm' => $form->createView()
         ));
     }
 
@@ -44,6 +63,11 @@ class ContactController extends Controller
         $repository = $this->getDoctrine()->getRepository('AppBundle:Contact');
 
         $contact = $repository->find($id);
+
+        if (!$contact) {
+            // TODO 404
+            throw new NotFoundHttpException('Ce contact n\'existe pas');
+        }
 
         return $this->render('AppBundle:Contact:show.html.twig', array(
             'contact' => $contact

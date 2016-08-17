@@ -93,5 +93,9 @@ class Societe
     {
         return $this->ville;
     }
-}
 
+    public function __toString()
+    {
+        return $this->nom;
+    }
+}

@@ -45,4 +45,28 @@
     </div>
     {% endif %}
 
+    {% if contact.societe %}
+        <div class="row">
+            <div class="col-sm-2">
+                <b>Société</b>
+            </div>
+            <div class="col-sm-10">
+                {{ contact.societe.nom }}
+            </div>
+        </div>
+    {% endif %}
+
+    {% if contact.groupes | length %}
+    <div class="row">
+        <div class="col-sm-2">
+            <b>Groupes</b>
+        </div>
+        <div class="col-sm-10">
+            {% for groupe in contact.groupes %}
+            <span class="label label-primary">{{ groupe.nom }}</span>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
 {% endblock %}
